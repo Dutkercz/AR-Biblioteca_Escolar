@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,5 +35,5 @@ public class Aluguel {
     @JoinTable(name = "aluguel_livro",
             joinColumns = @JoinColumn(name = "aluguel_id"),
             inverseJoinColumns = @JoinColumn(name = "livro_id"))
-    private List<Livro> livros;
+    private List<Livro> livros = new ArrayList<>();
 }

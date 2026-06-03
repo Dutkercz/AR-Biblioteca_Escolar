@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -38,5 +39,5 @@ public class Autor {
     @JoinTable(name = "autor_livro",
                 joinColumns = @JoinColumn(name = "autor_id"),
                 inverseJoinColumns =@JoinColumn (name = "livro_id"))
-    List<Livro> livros;
+    List<Livro> livros = new ArrayList<>();
 }
