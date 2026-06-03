@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost/lib_database?createDatabaseIfNotExist=true"
+    username: "root"
+    password: "${MYSQL_PASS}"
+  jpa:
+    hibernate:
+      ddl-auto: validate
