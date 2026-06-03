@@ -1,4 +1,4 @@
-package dutkercz.biblioteca.dto;
+package dutkercz.biblioteca.dto.locatario;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dutkercz.biblioteca.model.enums.GeneroEnum;

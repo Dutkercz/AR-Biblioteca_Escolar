@@ -1,4 +1,4 @@
-package dutkercz.biblioteca.dto;
+package dutkercz.biblioteca.dto.locatario;
 
 public record LocatarioResponseDto(
         Long id,

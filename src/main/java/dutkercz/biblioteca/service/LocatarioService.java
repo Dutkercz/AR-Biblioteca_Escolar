@@ -1,7 +1,7 @@
 package dutkercz.biblioteca.service;
 
-import dutkercz.biblioteca.dto.LocatarioRequestDto;
-import dutkercz.biblioteca.dto.LocatarioResponseDto;
+import dutkercz.biblioteca.dto.locatario.LocatarioRequestDto;
+import dutkercz.biblioteca.dto.locatario.LocatarioResponseDto;
 import dutkercz.biblioteca.mapper.LocatarioMapper;
 import dutkercz.biblioteca.repository.LocatarioRepository;
 import lombok.RequiredArgsConstructor;

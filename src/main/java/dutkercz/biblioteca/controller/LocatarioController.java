@@ -1,7 +1,7 @@
 package dutkercz.biblioteca.controller;
 
-import dutkercz.biblioteca.dto.LocatarioRequestDto;
-import dutkercz.biblioteca.dto.LocatarioResponseDto;
+import dutkercz.biblioteca.dto.locatario.LocatarioRequestDto;
+import dutkercz.biblioteca.dto.locatario.LocatarioResponseDto;
 import dutkercz.biblioteca.service.LocatarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+
+import static org.springframework.http.ResponseEntity.*;
 
 @RestController
 @RequestMapping("/api/locatarios")
@@ -26,6 +28,6 @@ public class LocatarioController {
                                                                   UriComponentsBuilder builder) {
         LocatarioResponseDto responseDto = locatarioService.cadastrarLocatario(requestDto);
         URI uri =  builder.path("/api/locatarios/{id}").buildAndExpand(responseDto.id()).toUri();
-        return  ResponseEntity.created(uri).body(responseDto);
+        return  created(uri).body(responseDto);
     }
 }
