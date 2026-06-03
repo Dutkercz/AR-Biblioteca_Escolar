@@ -2,17 +2,22 @@ package dutkercz.biblioteca.service;
 
 import dutkercz.biblioteca.dto.LocatarioRequestDto;
 import dutkercz.biblioteca.dto.LocatarioResponseDto;
+import dutkercz.biblioteca.mapper.LocatarioMapper;
 import dutkercz.biblioteca.repository.LocatarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class LocatarioService {
 
     private final LocatarioRepository locatarioRepository;
+    private final LocatarioMapper locatarioMapper;
 
+    @Transactional
     public LocatarioResponseDto cadastrarLocatario(LocatarioRequestDto locatarioRequestDto) {
-        return null;
+        var locatario = locatarioRepository.save(locatarioMapper.toEntity(locatarioRequestDto));
+        return locatarioMapper.toResponseDto(locatario);
     }
 }
