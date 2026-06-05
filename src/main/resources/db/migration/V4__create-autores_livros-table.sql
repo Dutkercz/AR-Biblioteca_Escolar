@@ -1,5 +1,4 @@
 CREATE TABLE autor_livro(
-    autor_livro_id BIGINT,
     autor_id BIGINT NOT NULL,
     livro_id BIGINT NOT NULL,
 
