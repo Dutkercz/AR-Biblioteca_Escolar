@@ -23,10 +23,10 @@ public class Aluguel {
     private Long id;
 
     @Column(nullable = false, updatable = false)
-    private LocalDate dataRetirada;
+    private LocalDate dataRetirada = LocalDate.now();
 
     @Column
-    private LocalDate dataDevolucao;
+    private LocalDate dataDevolucao = LocalDate.now().plusDays(2);
 
     @ManyToOne
     private Locatario locatario;
