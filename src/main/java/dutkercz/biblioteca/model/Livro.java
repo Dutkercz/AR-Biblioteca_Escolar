@@ -31,6 +31,18 @@ public class Livro {
     @Column(nullable = false)
     private LocalDate dataPublicacao;
 
+    private boolean estaLocado = false;
+
     @ManyToMany(mappedBy = "livros")
     private List<Autor> autores = new ArrayList<>();
+
+    public void addAutor(Autor autor) {
+        autores.add(autor);
+        autor.getLivros().add(this);
+    }
+
+    public void removeAutor(Autor autor) {
+        autores.remove(autor);
+        autor.getLivros().remove(this);
+    }
 }
