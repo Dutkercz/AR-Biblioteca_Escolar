@@ -14,8 +14,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
-import static org.springframework.http.ResponseEntity.*;
-
 @RestController
 @RequestMapping("/api/locatarios")
 @RequiredArgsConstructor
@@ -28,6 +26,6 @@ public class LocatarioController {
                                                                   UriComponentsBuilder builder) {
         LocatarioResponseDto responseDto = locatarioService.cadastrarLocatario(requestDto);
         URI uri =  builder.path("/api/locatarios/{id}").buildAndExpand(responseDto.id()).toUri();
-        return  created(uri).body(responseDto);
+        return  ResponseEntity.created(uri).body(responseDto);
     }
 }

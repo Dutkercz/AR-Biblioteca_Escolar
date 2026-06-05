@@ -14,7 +14,7 @@ public record LocatarioRequestDto(
         String nome,
 
         @NotNull(message = "opção inválida")
-        GeneroEnum sexo,
+        GeneroEnum genero,
 
         @NotBlank(message = "O campo telefone não pode estar em branco")
         @Pattern(regexp = "^(\\d{2}-?\\d{9}|\\d{2}-?\\d-?\\d{4}-?\\d{4})$",

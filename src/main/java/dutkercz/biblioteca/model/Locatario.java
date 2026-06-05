@@ -25,7 +25,7 @@ public class Locatario {
     private String nome;
 
     @Enumerated(EnumType.STRING)
-    private GeneroEnum sexo;
+    private GeneroEnum genero;
 
     @Column(nullable = false)
     private String telefone;
