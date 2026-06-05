@@ -1,5 +1,6 @@
 package dutkercz.biblioteca.model;
 
+import dutkercz.biblioteca.model.enums.AluguelStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,10 @@ public class Aluguel {
 
     @Column
     private LocalDate dataDevolucao = LocalDate.now().plusDays(2);
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private AluguelStatus status =  AluguelStatus.ATIVO;
 
     @ManyToOne
     private Locatario locatario;
