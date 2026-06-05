@@ -19,11 +19,4 @@ public interface AluguelMapper {
 
     AluguelResponseDto toResponseDto(Aluguel aluguel);
 
-//    @Condition
-//    default boolean verificaNullos(Object value){
-//        if (value instanceof String s){
-//            return s != null && !s.trim().isEmpty();
-//        }
-//        return value != null;
-//    }
 }

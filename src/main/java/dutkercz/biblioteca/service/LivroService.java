@@ -33,7 +33,8 @@ public class LivroService {
 
     public Livro encotrarLivroDisponivelParaAlugar(Long livroId) {
         return livroRepository.findByIdAndEstaLocadoFalse(livroId)
-          .orElseThrow(() -> new EntityNotFoundException("Livro com id " +  livroId + " não encontrado"));
+          .orElseThrow(() -> new EntityNotFoundException("Livro com id " +  livroId  +
+                                                         " não disponível ou não foi encontrado"));
     }
 
 
