@@ -27,7 +27,7 @@ public class Autor {
     private String nome;
 
     @Enumerated(EnumType.STRING)
-    private GeneroEnum sexo;
+    private GeneroEnum genero;
 
     @Column(nullable = false)
     private LocalDate dataNascimento;
