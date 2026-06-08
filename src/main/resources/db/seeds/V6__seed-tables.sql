@@ -1,0 +1,66 @@
+-- Autores
+insert into autores (nome, genero, data_nascimento, cpf) values ('Wilone', 'MASCULINO', '1988-10-04', '222.068.827-97');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Mercy', 'PREFIRO_NAO_DIZER', '1960-08-28', '457.295.907-59');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Gnni', 'OUTRO', '1956-07-24', '920.707.610-22');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Harcourt', 'PREFIRO_NAO_DIZER', '1950-02-20', '118.635.828-67');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Jillene', 'OUTRO', '1991-08-23', '126.873.764-70');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Lianne', 'NAO_BINARIO', '1964-04-29', '956.854.018-35');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Esme', 'MASCULINO', '1999-03-09', '711.126.443-78');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Jason', 'MASCULINO', '1955-06-02', '025.031.391-16');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Marlene', 'NAO_BINARIO', '1997-07-29', '597.201.227-96');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Sallee', 'PREFIRO_NAO_DIZER', '1957-06-20', '302.811.348-57');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Pammie', 'OUTRO', '1996-06-09', '584.525.614-76');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Carmella', 'OUTRO', '1960-12-07', '310.486.205-67');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Elbertina', 'FEMININO', '1974-08-10', '379.612.508-90');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Demetrius', 'FEMININO', '1967-03-21', '618.870.549-96');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Karil', 'NAO_BINARIO', '1954-03-16', '629.447.471-25');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Sheba', 'NAO_BINARIO', '1988-02-10', '487.411.047-87');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Fabe', 'FEMININO', '1959-08-05', '120.013.348-23');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Filbert', 'MASCULINO', '1958-05-08', '348.442.811-10');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Jordan', 'NAO_BINARIO', '1990-09-25', '934.719.328-47');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Sallie', 'FEMININO', '1977-07-28', '863.041.767-19');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Ulick', 'PREFIRO_NAO_DIZER', '1966-05-02', '998.385.091-80');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Simonette', 'PREFIRO_NAO_DIZER', '1998-04-27', '574.486.938-92');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Kellia', 'FEMININO', '1952-01-07', '379.074.906-42');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Bertram', 'MASCULINO', '1959-12-01', '626.896.839-89');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Ardisj', 'MASCULINO', '1975-12-22', '158.275.550-86');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Carrol', 'MASCULINO', '1978-04-25', '584.337.269-50');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Brenda', 'MASCULINO', '1989-06-21', '549.483.401-19');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Adlai', 'FEMININO', '1962-08-10', '933.772.625-32');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Jaquelin', 'MASCULINO', '1978-04-04', '554.693.450-21');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Gusti', 'OUTRO', '1992-08-30', '731.479.145-19');
+insert into autores (nome, genero, data_nascimento, cpf) values ('Bogey', 'MASCULINO', '1997-02-10', '749.050.884-05');
+
+
+-- Locatarios
+
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('João Silva', 'MASCULINO', '1965-09-29', '803.135.678-75', '20-02453-6335', 'csimecek0@about.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('João Silva', 'MASCULINO', '1996-12-21', '961.351.587-00', '11-4470-4298', 'bdubois1@wordpress.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Pedro Oliveira', 'FEMININO', '1952-04-15', '136.192.683-86', '77-60891-5874', 'arayer2@wiley.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Luiz Pereira', 'NAO_BINARIO', '1974-08-21', '230.917.351-77', '4428528-7124', 'bpeacher3@goo.ne.jp');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Pedro Oliveira', 'MASCULINO', '1987-06-05', '355.073.054-58', '1200399-1565', 'kfanthome4@opera.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Maria Santos', 'PREFIRO_NAO_DIZER', '1952-02-04', '849.783.776-56', '737707-6446', 'gscutchings5@etsy.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('João Silva', 'FEMININO', '1970-10-24', '818.062.920-79', '72-95041-6449', 'esurmeyer6@tmall.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Pedro Oliveira', 'OUTRO', '1998-11-28', '600.272.836-90', '8870157-6345', 'omeadway7@nytimes.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Pedro Oliveira', 'OUTRO', '1958-01-16', '893.512.135-28', '647948-5482', 'lfinnis8@si.edu');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Ana Costa', 'MASCULINO', '1970-12-13', '864.733.819-66', '9717200-2358', 'rmishow9@theglobeandmail.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Ana Costa', 'MASCULINO', '1971-09-01', '584.196.756-59', '9314818-4512', 'ejasika@cyberchimps.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('João Silva', 'FEMININO', '1986-08-31', '970.940.958-14', '46-26355-2726', 'gbernardosb@g.co');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Ana Costa', 'OUTRO', '2000-02-07', '193.062.789-20', '68-52570-9492', 'meldridc@jalbum.net');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Ana Costa', 'FEMININO', '1971-12-20', '636.722.669-31', '5193046-9981', 'jhowlesd@wp.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Maria Santos', 'FEMININO', '1970-12-11', '656.419.615-68', '51-1389-3989', 'aropkinse@flavors.me');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Ana Costa', 'NAO_BINARIO', '1970-04-30', '376.796.936-17', '61-9317-9815', 'lbrouardf@google.it');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Luiz Pereira', 'NAO_BINARIO', '1974-06-06', '637.070.895-57', '6034947-6646', 'adacostag@samsung.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Maria Santos', 'OUTRO', '1979-05-05', '188.584.019-18', '11-08913-9281', 'bskitchh@cnet.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Ana Costa', 'FEMININO', '1969-04-07', '977.893.296-21', '2236409-6049', 'mhiscocksi@loc.gov');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Pedro Oliveira', 'OUTRO', '1965-02-28', '467.941.158-11', '986326-7504', 'tverneyj@nyu.edu');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Ana Costa', 'OUTRO', '1988-12-15', '451.032.423-57', '241584-4889', 'rlulhamk@alibaba.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Maria Santos', 'MASCULINO', '1974-04-17', '480.913.916-89', '29-7531-7657', 'bmaccarrickl@jimdo.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Luiz Pereira', 'PREFIRO_NAO_DIZER', '1968-06-16', '793.210.107-42', '6368434-5960', 'rpressliem@fc2.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Luiz Pereira', 'FEMININO', '2000-10-26', '055.838.240-38', '622574-3460', 'jwillbondn@qq.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Pedro Oliveira', 'NAO_BINARIO', '1981-05-19', '331.714.853-55', '17-70178-6582', 'srousto@pcworld.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Ana Costa', 'OUTRO', '1968-06-02', '066.691.937-14', '60-6288-8915', 'akubup@uiuc.edu');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Luiz Pereira', 'MASCULINO', '1980-01-02', '073.066.179-55', '010661-9444', 'tfarthinq@google.co.jp');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Ana Costa', 'MASCULINO', '1969-03-14', '519.170.197-48', '301267-8281', 'emaeerr@google.nl');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('João Silva', 'NAO_BINARIO', '1994-02-26', '691.633.462-90', '663869-6708', 'pfeldbergers@cafepress.com');
+insert into locatarios (nome, genero, data_nascimento, cpf, telefone, email) values ('Pedro Oliveira', 'OUTRO', '1956-10-03', '745.678.745-88', '95-3900-8603', 'tkleinet@economist.com');
