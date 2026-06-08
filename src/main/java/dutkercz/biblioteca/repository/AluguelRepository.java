@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface AluguelRepository extends JpaRepository<Aluguel, Long> {
 
     @Query("""
@@ -13,4 +15,6 @@ public interface AluguelRepository extends JpaRepository<Aluguel, Long> {
            WHERE a.status = 'ATIVO' OR  a.status = 'FINALIZADO'
            """)
     Page<Aluguel> findAllAtivasEFinalizadas(Pageable pageable);
+
+    List<Aluguel> getByLocatarioId(Long clientId);
 }

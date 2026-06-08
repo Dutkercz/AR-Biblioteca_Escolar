@@ -2,6 +2,7 @@ package dutkercz.biblioteca.controller;
 
 import dutkercz.biblioteca.dto.aluguel.AluguelRequestDto;
 import dutkercz.biblioteca.dto.aluguel.AluguelResponseDto;
+import dutkercz.biblioteca.dto.livro.LivroResponseDto;
 import dutkercz.biblioteca.service.AluguelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/alugueis")
@@ -41,5 +43,12 @@ public class AluguelController {
     public ResponseEntity<Void> deletarAluguel(@PathVariable Long id){
         aluguelService.deletarAluguel(id);
         return ResponseEntity.ok().build();
+    }
+
+    // buscar alugueis de um ID (locatarioID) -> pegar todos alugueis (list) -> pegar todos os livros de cada aluguel
+    //remover repetidos usando o Set
+    @GetMapping("/locatario/{locatarioID}")
+    public ResponseEntity<Set<LivroResponseDto>> livrosAlugadosPorLocatario(@PathVariable Long locatarioID){
+        return ResponseEntity.ok(aluguelService.historicoDeAluguelPorLocatario(locatarioID));
     }
 }
