@@ -37,6 +37,11 @@ public class LivroController {
     public ResponseEntity<Page<LivroResponseDto>> listarLivrosAlugados(Pageable pageable){
         return ResponseEntity.ok(livroService.listarLivrosIndisponiveis(pageable));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<LivroResponseDto> listarLivrosAlugados(@PathVariable Long id){
+        return ResponseEntity.ok(livroService.encontrarLivroPorId(id));
+    }
 }
 
 

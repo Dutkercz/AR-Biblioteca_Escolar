@@ -53,4 +53,9 @@ public class LivroService {
         return livroRepository.findAllByEstaLocado(pageable, true).map(livroMapper::toResponseDto);
 
     }
+
+    public LivroResponseDto encontrarLivroPorId(Long id) {
+        return livroMapper.toResponseDto(livroRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Livro com id "+ id + " não encontrado")));
+    }
 }
