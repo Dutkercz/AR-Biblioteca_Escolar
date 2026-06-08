@@ -6,8 +6,11 @@ import dutkercz.biblioteca.mapper.LivroMapper;
 import dutkercz.biblioteca.model.Autor;
 import dutkercz.biblioteca.model.Livro;
 import dutkercz.biblioteca.service.validacoes.ValidarListaDeAutores;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +26,10 @@ public class LivroService {
 
     @Transactional
     public LivroResponseDto cadastrarLivro(LivroRequestDto requestDto) {
+        if (livroRepository.existsByISBN(requestDto.ISBN())){
+            throw new EntityExistsException("ISBN já cadastrado");
+        }
+
         List<Autor> autores = validarListaDeAutores.validarIds(requestDto.autoresIds());
         Livro livro = livroMapper.toEntity(requestDto);
         autores.forEach(livro::addAutor);
@@ -31,11 +38,19 @@ public class LivroService {
     }
 
 
-    public Livro encotrarLivroDisponivelParaAlugar(Long livroId) {
+    public Livro encontrarLivroDisponivelParaAlugar(Long livroId) {
         return livroRepository.findByIdAndEstaLocadoFalse(livroId)
           .orElseThrow(() -> new EntityNotFoundException("Livro com id " +  livroId  +
                                                          " não disponível ou não foi encontrado"));
     }
 
 
+    public Page<LivroResponseDto> listarLivrosDisponiveis(Pageable pageable) {
+        return livroRepository.findAllByEstaLocado(pageable, false).map(livroMapper::toResponseDto);
+    }
+
+    public Page<LivroResponseDto> listarLivrosIndisponiveis(Pageable pageable) {
+        return livroRepository.findAllByEstaLocado(pageable, true).map(livroMapper::toResponseDto);
+
+    }
 }

@@ -5,11 +5,10 @@ import dutkercz.biblioteca.dto.livro.LivroResponseDto;
 import dutkercz.biblioteca.service.LivroService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -28,4 +27,27 @@ public class LivroController {
         URI uri = builder.path("/api/livros/{id}").buildAndExpand(responseDto.id()).toUri();
         return ResponseEntity.created(uri).body(responseDto);
     }
+
+    @GetMapping("/disponiveis")
+    public ResponseEntity<Page<LivroResponseDto>> listarLivrosDisponiveis(Pageable pageable){
+        return ResponseEntity.ok(livroService.listarLivrosDisponiveis(pageable));
+    }
+
+    @GetMapping("/alugados")
+    public ResponseEntity<Page<LivroResponseDto>> listarLivrosAlugados(Pageable pageable){
+        return ResponseEntity.ok(livroService.listarLivrosIndisponiveis(pageable));
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -30,7 +30,7 @@ public class AluguelService {
     public AluguelResponseDto alugarLivro(AluguelRequestDto requestDto) {
         Locatario locatario = locatarioService.encontrarLocatarioPorId(requestDto.locatarioId());
         List<Livro> livros = requestDto.livrosIds().stream().map(id -> {
-            Livro livro = livroRepository.encotrarLivroDisponivelParaAlugar(id);
+            Livro livro = livroRepository.encontrarLivroDisponivelParaAlugar(id);
             livro.setEstaLocado(true);
             return livro;
         }).toList();
