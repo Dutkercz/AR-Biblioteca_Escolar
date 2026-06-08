@@ -5,11 +5,10 @@ import dutkercz.biblioteca.dto.autor.AutorResponseDto;
 import dutkercz.biblioteca.service.AutorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -27,5 +26,11 @@ public class AutorController {
         AutorResponseDto responseDto = autorService.cadastrarAutor(requestDto);
         URI uri = builder.path("/api/autores/{id}").buildAndExpand(responseDto.id()).toUri();
         return ResponseEntity.created(uri).body(responseDto);
+    }
+
+    @GetMapping()
+    public ResponseEntity<Page<AutorResponseDto>> encontrarAutorPorNome(@RequestParam String nome,
+                                                                       Pageable  pageable) {
+        return ResponseEntity.ok(autorService.encontrarAutorPorNome(nome, pageable));
     }
 }

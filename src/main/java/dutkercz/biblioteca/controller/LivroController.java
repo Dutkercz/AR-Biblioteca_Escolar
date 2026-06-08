@@ -39,7 +39,7 @@ public class LivroController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LivroResponseDto> listarLivrosAlugados(@PathVariable Long id){
+    public ResponseEntity<LivroResponseDto> encontrarLivroPorId(@PathVariable Long id){
         return ResponseEntity.ok(livroService.encontrarLivroPorId(id));
     }
 }

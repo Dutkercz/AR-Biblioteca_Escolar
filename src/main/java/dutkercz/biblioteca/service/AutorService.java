@@ -8,7 +8,11 @@ import dutkercz.biblioteca.repository.AutorRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,5 +31,9 @@ public class AutorService {
         }
         Autor autor = autorRepository.save(autorMapper.toEntity(requestDto));
         return autorMapper.ToResponseDto(autor);
+    }
+
+    public Page<AutorResponseDto> encontrarAutorPorNome(String nome,  Pageable pageable) {
+        return autorRepository.findByNomeContainingIgnoreCase(nome,pageable).map(autorMapper::ToResponseDto);
     }
 }
