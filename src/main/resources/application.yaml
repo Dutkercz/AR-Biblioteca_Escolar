@@ -3,3 +3,7 @@ spring:
     name: desafio-biblioteca
   profiles:
     active: "h2"
+
+  #não renderizar campos nullos em respostas :D
+  jackson:
+    default-property-inclusion: non_null
