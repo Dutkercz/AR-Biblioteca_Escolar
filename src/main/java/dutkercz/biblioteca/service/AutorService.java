@@ -1,11 +1,14 @@
 package dutkercz.biblioteca.service;
 
+import dutkercz.biblioteca.dto.autor.AutorComLivrosResponseDto;
 import dutkercz.biblioteca.dto.autor.AutorRequestDto;
 import dutkercz.biblioteca.dto.autor.AutorResponseDto;
+import dutkercz.biblioteca.exception.custom.BusinessException;
 import dutkercz.biblioteca.mapper.AutorMapper;
 import dutkercz.biblioteca.model.Autor;
 import dutkercz.biblioteca.repository.AutorRepository;
 import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -35,5 +38,14 @@ public class AutorService {
 
     public Page<AutorResponseDto> encontrarAutorPorNome(String nome,  Pageable pageable) {
         return autorRepository.findByNomeContainingIgnoreCase(nome,pageable).map(autorMapper::ToResponseDto);
+    }
+
+    public AutorComLivrosResponseDto encontrarLivrosPorAutorId(Long id) {
+        Autor autor = autorRepository.findById(id).orElseThrow( () ->
+                new EntityNotFoundException("Autor de id "+id+" não encontrado"));
+        if(autor.getLivros().isEmpty()){
+            throw new BusinessException("Autor não possuir livros cadastrados");
+        }
+        return autorMapper.ToResponseComLivrosDto(autor);
     }
 }

@@ -1,5 +1,6 @@
 package dutkercz.biblioteca.controller;
 
+import dutkercz.biblioteca.dto.autor.AutorComLivrosResponseDto;
 import dutkercz.biblioteca.dto.autor.AutorRequestDto;
 import dutkercz.biblioteca.dto.autor.AutorResponseDto;
 import dutkercz.biblioteca.service.AutorService;
@@ -32,5 +33,10 @@ public class AutorController {
     public ResponseEntity<Page<AutorResponseDto>> encontrarAutorPorNome(@RequestParam String nome,
                                                                        Pageable  pageable) {
         return ResponseEntity.ok(autorService.encontrarAutorPorNome(nome, pageable));
+    }
+
+    @GetMapping("{id}/livros")
+    public ResponseEntity<AutorComLivrosResponseDto> encontrarLivrosDeAutor(@PathVariable Long id){
+        return ResponseEntity.ok(autorService.encontrarLivrosPorAutorId(id));
     }
 }

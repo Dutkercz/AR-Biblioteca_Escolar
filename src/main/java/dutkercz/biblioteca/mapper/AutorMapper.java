@@ -1,5 +1,6 @@
 package dutkercz.biblioteca.mapper;
 
+import dutkercz.biblioteca.dto.autor.AutorComLivrosResponseDto;
 import dutkercz.biblioteca.dto.autor.AutorRequestDto;
 import dutkercz.biblioteca.dto.autor.AutorResponseDto;
 import dutkercz.biblioteca.model.Autor;
@@ -11,5 +12,10 @@ public interface AutorMapper {
 
     @Mapping(target = "livros", ignore = true)
     Autor toEntity(AutorRequestDto autorRequestDto);
+
     AutorResponseDto ToResponseDto(Autor autor);
+
+    @Mapping(target = "livros.autoresNome", ignore = true)
+    AutorComLivrosResponseDto ToResponseComLivrosDto(Autor autor);
+
 }
