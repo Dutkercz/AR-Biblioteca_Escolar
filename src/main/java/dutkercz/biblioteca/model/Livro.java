@@ -41,6 +41,5 @@ public class Livro {
 
     public void removeAutor(Autor autor) {
         autores.remove(autor);
-        autor.getLivros().remove(this);
     }
 }

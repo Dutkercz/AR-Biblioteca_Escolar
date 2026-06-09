@@ -39,4 +39,16 @@ public class AutorController {
     public ResponseEntity<AutorComLivrosResponseDto> encontrarLivrosDeAutor(@PathVariable Long id){
         return ResponseEntity.ok(autorService.encontrarLivrosPorAutorId(id));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarAutor(@PathVariable Long id){
+        autorService.deletarPorId(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}/livro/{livroId}")
+    public ResponseEntity<Void> removerAutoriaDeLivro(@PathVariable Long id,  @PathVariable Long livroId){
+        autorService.removerAutoriaDeLivro(id, livroId);
+        return ResponseEntity.ok().build();
+    }
 }

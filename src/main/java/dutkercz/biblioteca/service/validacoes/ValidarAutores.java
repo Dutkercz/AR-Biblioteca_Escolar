@@ -7,13 +7,12 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class ValidarListaDeAutores {
+public class ValidarAutores {
 
     private final AutorRepository autorRepository;
 

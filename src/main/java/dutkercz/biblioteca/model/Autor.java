@@ -40,4 +40,8 @@ public class Autor {
                 joinColumns = @JoinColumn(name = "autor_id"),
                 inverseJoinColumns =@JoinColumn (name = "livro_id"))
     List<Livro> livros = new ArrayList<>();
+
+    public void removeLivro(Livro livro) {
+        livros.remove(livro);
+    }
 }
