@@ -49,6 +49,6 @@ public class AluguelController {
     //remover repetidos usando o Set
     @GetMapping("/locatario/{locatarioID}")
     public ResponseEntity<Set<LivroResponseDto>> livrosAlugadosPorLocatario(@PathVariable Long locatarioID){
-        return ResponseEntity.ok(aluguelService.historicoDeAluguelPorLocatario(locatarioID));
+        return ResponseEntity.ok(aluguelService.historicoDeLivrosLocadosPorLocatario(locatarioID));
     }
 }

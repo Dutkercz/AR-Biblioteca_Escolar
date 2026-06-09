@@ -16,5 +16,5 @@ public interface AluguelRepository extends JpaRepository<Aluguel, Long> {
            """)
     Page<Aluguel> findAllAtivasEFinalizadas(Pageable pageable);
 
-    List<Aluguel> getByLocatarioId(Long clientId);
+    List<Aluguel> findByLocatarioId(Long locatarioId);
 }
