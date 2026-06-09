@@ -3,7 +3,7 @@ CREATE TABLE alugueis(
     data_retirada DATE ,
     data_devolucao DATE,
     status ENUM('ATIVO','FINALIZADO','CANCELADO') NOT NULL,
-    locatario_id BIGINT NOT NULL ,
+    locatario_id BIGINT,
 
     CONSTRAINT fk_aluguel_locatario FOREIGN KEY (locatario_id) REFERENCES locatarios(id)
 );
