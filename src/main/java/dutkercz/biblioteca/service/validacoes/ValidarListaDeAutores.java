@@ -1,5 +1,6 @@
 package dutkercz.biblioteca.service.validacoes;
 
+import dutkercz.biblioteca.exception.custom.BusinessException;
 import dutkercz.biblioteca.model.Autor;
 import dutkercz.biblioteca.repository.AutorRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -17,7 +18,7 @@ public class ValidarListaDeAutores {
     private final AutorRepository autorRepository;
 
     public List<Autor> validarIds(List<Long> autoresIds){
-        if (autoresIds == null || autoresIds.isEmpty()) return Collections.emptyList();
+        if (autoresIds == null || autoresIds.isEmpty()) throw new BusinessException("Autores não informados no cadastro");
         return autoresIds
                 .stream()
                 .map(
