@@ -14,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(("/api/livros"))
+@RequestMapping("/api/livros")
 @RequiredArgsConstructor
 public class LivroController {
 
@@ -41,6 +41,12 @@ public class LivroController {
     @GetMapping("/{id}")
     public ResponseEntity<LivroResponseDto> encontrarLivroPorId(@PathVariable Long id){
         return ResponseEntity.ok(livroService.encontrarLivroPorId(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarLivroPorId(@PathVariable Long id){
+        livroService.deletarPorId(id);
+        return ResponseEntity.ok().build();
     }
 }
 

@@ -2,6 +2,7 @@ package dutkercz.biblioteca.service;
 
 import dutkercz.biblioteca.dto.livro.LivroRequestDto;
 import dutkercz.biblioteca.dto.livro.LivroResponseDto;
+import dutkercz.biblioteca.exception.custom.BusinessException;
 import dutkercz.biblioteca.mapper.LivroMapper;
 import dutkercz.biblioteca.model.Autor;
 import dutkercz.biblioteca.model.Livro;
@@ -57,5 +58,20 @@ public class LivroService {
     public LivroResponseDto encontrarLivroPorId(Long id) {
         return livroMapper.toResponseDto(livroRepository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Livro com id "+ id + " não encontrado")));
+    }
+
+    @Transactional
+    public void deletarPorId(Long id) {
+        Livro livro = livroRepository.findById(id)
+                     .orElseThrow(() -> new EntityNotFoundException("Livro com id " +  id  +
+                                                                    " não disponível ou não foi encontrado"));
+        if (livro.isEstaLocado()){
+            throw new BusinessException("O livro não pode ser exlcuído");
+        }
+        
+        for (Autor autor : livro.getAutores()) {
+            autor.getLivros().remove(livro);
+        }
+        livroRepository.delete(livro);
     }
 }
