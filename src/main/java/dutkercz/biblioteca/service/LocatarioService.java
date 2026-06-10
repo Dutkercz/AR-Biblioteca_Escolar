@@ -9,6 +9,7 @@ import dutkercz.biblioteca.model.Locatario;
 import dutkercz.biblioteca.model.enums.AluguelStatus;
 import dutkercz.biblioteca.repository.AluguelRepository;
 import dutkercz.biblioteca.repository.LocatarioRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,15 +34,17 @@ public class LocatarioService {
         return locatarioRepository.existsByCpf(cpf);
     }
 
-
     private boolean existeLocatarioPorEmail(String email) {
         return locatarioRepository.existsByEmail(email);
     }
 
     @Transactional
     public LocatarioResponseDto cadastrarLocatario(LocatarioRequestDto requestDto) {
-        if (existeLocatarioPorCpf(requestDto.cpf()) || existeLocatarioPorEmail(requestDto.email())) {
-            throw new BusinessException("Email e/ou CPF já cadastrados");
+        if (existeLocatarioPorCpf(requestDto.cpf())) {
+            throw new EntityExistsException("CPF já cadastrados");
+        }
+        if (existeLocatarioPorEmail(requestDto.email())) {
+            throw new BusinessException("Email já cadastrados");
         }
         var locatario = locatarioRepository.save(locatarioMapper.toEntity(requestDto));
         return locatarioMapper.toResponseDto(locatario);

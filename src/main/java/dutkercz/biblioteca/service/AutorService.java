@@ -33,7 +33,7 @@ public class AutorService {
                   new EntityNotFoundException("Autor de id "+id+" não encontrado"));
     }
 
-    public AutorResponseDto cadastrarAutor(@Valid AutorRequestDto requestDto) {
+    public AutorResponseDto cadastrarAutor(AutorRequestDto requestDto) {
         if (existeAutorPorCpf(requestDto.cpf())){
             throw new EntityExistsException("Autor já cadastrado");
         }

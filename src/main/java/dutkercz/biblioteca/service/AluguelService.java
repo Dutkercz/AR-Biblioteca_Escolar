@@ -28,11 +28,11 @@ import java.util.stream.Collectors;
 public class AluguelService {
     private final AluguelRepository aluguelRepository;
     private final AluguelMapper aluguelMapper;
-    private final LivroService livroRepository;
+    private final LivroService livroService;
     private final LocatarioService locatarioService;
     private final LivroMapper livroMapper;
 
-    private Aluguel aluguelFinder(Long aluguelId){
+    public Aluguel aluguelFinder(Long aluguelId){
         return aluguelRepository.findById(aluguelId).orElseThrow(
             () -> new EntityNotFoundException("Aluguel de id " + aluguelId + " não encontrado"));
     }
@@ -45,7 +45,7 @@ public class AluguelService {
     public AluguelResponseDto alugarLivro(AluguelRequestDto requestDto) {
         Locatario locatario = locatarioService.locatarioFinder(requestDto.locatarioId());
         List<Livro> livros = requestDto.livrosIds().stream().map(id -> {
-            Livro livro = livroRepository.encontrarLivroDisponivelParaAlugar(id);
+            Livro livro = livroService.encontrarLivroDisponivelParaAlugar(id);
             livro.setEstaLocado(true);
             return livro;
         }).toList();
