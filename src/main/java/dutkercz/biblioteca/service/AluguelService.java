@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -59,10 +60,12 @@ public class AluguelService {
     }
 
     @Transactional
-    public void finalizarAluguel(Long id) {
+    public AluguelResponseDto finalizarAluguel(Long id) {
         Aluguel aluguel = aluguelFinder(id);
         aluguel.getLivros().forEach(livro -> livro.setEstaLocado(false));
         aluguel.setStatus(AluguelStatus.FINALIZADO);
+        aluguel.setDataDevolucao(LocalDate.now());
+        return aluguelMapper.toResponseDto(aluguel);
     }
 
     @Transactional
@@ -72,15 +75,11 @@ public class AluguelService {
             throw new BusinessException("Este aluguel não pode ser cancelado");
         }
         aluguel.getLivros().forEach(livro -> livro.setEstaLocado(false));
-        aluguel.setStatus(AluguelStatus.CANCELADO);
+        aluguelRepository.delete(aluguel);
     }
 
-    //array 1 = [a, b, c]
-    //array 2 = [d, e, f]
-    //map = [ [a, b, c], [d, e, f]] <-array de arrays
-    //flatMap = [a, b, c, d, e, f] <- array dos arrays
     public Set<LivroResponseDto> historicoDeLivrosLocadosPorLocatario(Long locatarioID) {
-        Locatario locatario =  locatarioService.encontrarLocatarioPorId(locatarioID);
+        locatarioService.encontrarLocatarioPorId(locatarioID);
         List<Aluguel> alugueis = alugueisPorLocatarioId(locatarioID);
         Set<Livro> livroSet = alugueis.stream()
                                       .flatMap(aluguel -> aluguel.getLivros().stream())

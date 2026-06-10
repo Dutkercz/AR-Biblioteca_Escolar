@@ -33,10 +33,9 @@ public class AluguelController {
         return ResponseEntity.ok(aluguelService.listarAlugueis(pageable));
     }
     @PutMapping("/devolver/{id}")
-    public ResponseEntity<Void> devolverLivros(@PathVariable Long id){
-        aluguelService.finalizarAluguel(id);
-        return ResponseEntity.ok().build();
-
+    public ResponseEntity<AluguelResponseDto> devolverLivros(@PathVariable Long id){
+        AluguelResponseDto responseDto = aluguelService.finalizarAluguel(id);
+        return ResponseEntity.ok(responseDto);
     }
 
     @DeleteMapping("/{id}")
