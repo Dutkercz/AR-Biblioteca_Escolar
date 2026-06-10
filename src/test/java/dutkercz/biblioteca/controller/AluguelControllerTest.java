@@ -7,7 +7,6 @@ import dutkercz.biblioteca.repository.AluguelRepository;
 import dutkercz.biblioteca.repository.AutorRepository;
 import dutkercz.biblioteca.repository.LivroRepository;
 import dutkercz.biblioteca.repository.LocatarioRepository;
-import dutkercz.biblioteca.service.AluguelService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,10 +19,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDate;
 import java.util.List;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -35,7 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 @Transactional //faz um rollback ao final de cada teste
 class AluguelControllerTest {
-
 
     @Autowired
     private MockMvc mockMvc;
@@ -51,9 +47,6 @@ class AluguelControllerTest {
 
     @Autowired
     private LocatarioRepository locatarioRepository;
-
-    @Autowired
-    private AluguelService aluguelService;
 
     @Autowired
     private JacksonTester<AluguelRequestDto> jsonRequestDto;

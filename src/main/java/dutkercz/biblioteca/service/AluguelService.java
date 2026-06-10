@@ -43,7 +43,7 @@ public class AluguelService {
 
     @Transactional
     public AluguelResponseDto alugarLivro(AluguelRequestDto requestDto) {
-        Locatario locatario = locatarioService.encontrarLocatarioPorId(requestDto.locatarioId());
+        Locatario locatario = locatarioService.locatarioFinder(requestDto.locatarioId());
         List<Livro> livros = requestDto.livrosIds().stream().map(id -> {
             Livro livro = livroRepository.encontrarLivroDisponivelParaAlugar(id);
             livro.setEstaLocado(true);
@@ -79,7 +79,7 @@ public class AluguelService {
     }
 
     public Set<LivroResponseDto> historicoDeLivrosLocadosPorLocatario(Long locatarioID) {
-        locatarioService.encontrarLocatarioPorId(locatarioID);
+        locatarioService.locatarioFinder(locatarioID);
         List<Aluguel> alugueis = alugueisPorLocatarioId(locatarioID);
         Set<Livro> livroSet = alugueis.stream()
                                       .flatMap(aluguel -> aluguel.getLivros().stream())
