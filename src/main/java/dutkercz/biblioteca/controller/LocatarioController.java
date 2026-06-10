@@ -29,6 +29,6 @@ public class LocatarioController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarLocatario(@PathVariable Long id) {
         locatarioService.deletarPorId(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }

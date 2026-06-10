@@ -32,7 +32,7 @@ public class FactoryHelper {
     public static LocatarioRequestDto createLocatarioRequestDto(){
         return new LocatarioRequestDto("Locatario", GeneroEnum.FEMININO, "55999009988",
                         "email@email.com",LocalDate.of(2000, 1, 1),
-                        "14725836911");
+                        "12453857045");
     }
 
     public static LivroRequestDto createLivroRequestDto(){

@@ -41,7 +41,7 @@ public class AluguelController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarAluguel(@PathVariable Long id){
         aluguelService.deletarAluguel(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     // buscar alugueis de um ID (locatarioID) -> pegar todos alugueis (list) -> pegar todos os livros de cada aluguel

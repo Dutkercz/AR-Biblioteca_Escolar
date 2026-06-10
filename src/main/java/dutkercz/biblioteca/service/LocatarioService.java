@@ -51,9 +51,9 @@ public class LocatarioService {
     public void deletarPorId(Long id) {
         Locatario locatario = locatarioFinder(id);
         List<Aluguel> algueisDoLocatario =  aluguelRepository.findByLocatarioId(id);
-        boolean possuiAtivo = algueisDoLocatario.stream()
+        boolean possuiAluguelAtivo = algueisDoLocatario.stream()
                                 .anyMatch(x -> x.getStatus() == AluguelStatus.ATIVO);
-        if (possuiAtivo) {
+        if (possuiAluguelAtivo) {
             throw new BusinessException("Locatario possui alugueis em aberto");
         }
         algueisDoLocatario.forEach(al -> al.setLocatario(null));

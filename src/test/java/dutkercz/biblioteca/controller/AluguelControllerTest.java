@@ -113,7 +113,8 @@ class AluguelControllerTest {
         var aluguel = aluguelRepository.save(FactoryHelper.createAluguel(locatario, List.of(livro)));
 
         mockMvc.perform(delete("/api/alugueis/"+aluguel.getId()))
-               .andExpect(status().isOk()).andDo(print());
+               .andExpect(status().isNoContent())
+               .andDo(print());
         Assertions.assertFalse(aluguelRepository.existsById(aluguel.getId()));
     }
 
