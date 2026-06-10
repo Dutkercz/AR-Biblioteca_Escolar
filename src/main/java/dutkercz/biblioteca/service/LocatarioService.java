@@ -24,19 +24,27 @@ public class LocatarioService {
     private final LocatarioMapper locatarioMapper;
     private final AluguelRepository aluguelRepository;
 
-    private Locatario locatarioFinder(Long locatarioId){
+    public Locatario locatarioFinder(Long locatarioId){
         return locatarioRepository.findById(locatarioId).orElseThrow(
             () -> new EntityNotFoundException("Locatario com id " + locatarioId + " não encontrado"));
     }
 
-    @Transactional
-    public LocatarioResponseDto cadastrarLocatario(LocatarioRequestDto locatarioRequestDto) {
-        var locatario = locatarioRepository.save(locatarioMapper.toEntity(locatarioRequestDto));
-        return locatarioMapper.toResponseDto(locatario);
+    private boolean existeLocatarioPorCpf(String cpf) {
+        return locatarioRepository.existsByCpf(cpf);
     }
 
-    public Locatario encontrarLocatarioPorId(Long locatarioId) {
-        return locatarioFinder(locatarioId);
+
+    private boolean existeLocatarioPorEmail(String email) {
+        return locatarioRepository.existsByEmail(email);
+    }
+
+    @Transactional
+    public LocatarioResponseDto cadastrarLocatario(LocatarioRequestDto requestDto) {
+        if (existeLocatarioPorCpf(requestDto.cpf()) || existeLocatarioPorEmail(requestDto.email())) {
+            throw new BusinessException("Email e/ou CPF já cadastrados");
+        }
+        var locatario = locatarioRepository.save(locatarioMapper.toEntity(requestDto));
+        return locatarioMapper.toResponseDto(locatario);
     }
 
     @Transactional
