@@ -60,7 +60,6 @@ public class FactoryHelper {
     }
 
     public static Aluguel createAluguel(Locatario locatario, List<Livro> livros) {
-
         var aluguel = aluguelMapper.toEntity(
                 createAluguelRequestDto(locatario.getId(),livros.get(0).getId()),
                                              locatario, livros);
@@ -80,5 +79,15 @@ public class FactoryHelper {
         aluguelCancelado.setStatus(AluguelStatus.CANCELADO);
 
         return List.of(aluguelAtivo, aluguelFinalizado, aluguelCancelado);
+    }
+
+    public static List<Livro> listaLivros(){
+        var livroDisponivel = createLivro();
+        livroDisponivel.setEstaLocado(false);
+
+        var livroAlugado = createLivro();
+        livroAlugado.setEstaLocado(true);
+
+        return List.of(livroDisponivel, livroAlugado);
     }
 }
