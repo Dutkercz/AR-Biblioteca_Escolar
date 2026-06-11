@@ -54,9 +54,9 @@ class AluguelControllerTest {
     @Test
     @DisplayName("Deve alugar um livro com sucesso")
     void alugarLivro() throws Exception {
-        livroRepository.save(FactoryHelper.createLivro());
-        var locatario = locatarioRepository.save(FactoryHelper.createLocatario());
-        var livro =  livroRepository.save(FactoryHelper.createLivro());
+        var autor = autorRepository.save(FactoryHelper.createAutor());
+        var locatario =  locatarioRepository.save(FactoryHelper.createLocatario());
+        var livro =  livroRepository.save(FactoryHelper.createLivro(autor.getId()));
         var requestDto = FactoryHelper.createAluguelRequestDto(locatario.getId(), livro.getId());
 
         mockMvc.perform(post("/api/alugueis")
@@ -74,9 +74,9 @@ class AluguelControllerTest {
     @Test
     @DisplayName("Deve listar corretamente uma lista de alugueis ativos e finalizados")
     void listarAlugueis() throws Exception {
-        autorRepository.save(FactoryHelper.createAutor());
+        var autor = autorRepository.save(FactoryHelper.createAutor());
         var locatario =  locatarioRepository.save(FactoryHelper.createLocatario());
-        var livro =  livroRepository.save(FactoryHelper.createLivro());
+        var livro =  livroRepository.save(FactoryHelper.createLivro(autor.getId()));
 
         var livros = aluguelRepository.saveAll(FactoryHelper.listaAluguel(locatario, List.of(livro)));
 
@@ -91,9 +91,9 @@ class AluguelControllerTest {
     @Test
     @DisplayName("Deve devolver status 200 quando a devolução for bem sucedida")
     void devolverLivros() throws Exception {
-        autorRepository.save(FactoryHelper.createAutor());
+        var autor = autorRepository.save(FactoryHelper.createAutor());
         var locatario =  locatarioRepository.save(FactoryHelper.createLocatario());
-        var livro =  livroRepository.save(FactoryHelper.createLivro());
+        var livro =  livroRepository.save(FactoryHelper.createLivro(autor.getId()));
         var aluguel = aluguelRepository.save(FactoryHelper.createAluguel(locatario, List.of(livro)));
 
         mockMvc.perform(put("/api/alugueis/devolver/"+aluguel.getId()))
@@ -107,9 +107,9 @@ class AluguelControllerTest {
     @Test
     @DisplayName("Deve deletar um aluguel com sucesso quando status for ATIVO")
     void deveDeletarAluguelComSucesso() throws Exception {
-        autorRepository.save(FactoryHelper.createAutor());
+        var autor = autorRepository.save(FactoryHelper.createAutor());
         var locatario =  locatarioRepository.save(FactoryHelper.createLocatario());
-        var livro =  livroRepository.save(FactoryHelper.createLivro());
+        var livro =  livroRepository.save(FactoryHelper.createLivro(autor.getId()));
         var aluguel = aluguelRepository.save(FactoryHelper.createAluguel(locatario, List.of(livro)));
 
         mockMvc.perform(delete("/api/alugueis/"+aluguel.getId()))
@@ -121,9 +121,9 @@ class AluguelControllerTest {
     @Test
     @DisplayName("Deve falhar ao tentar deletar um aluguel com status FINALIZADO")
     void deveFalharAoDeletarAluguel() throws Exception {
-        autorRepository.save(FactoryHelper.createAutor());
+        var autor = autorRepository.save(FactoryHelper.createAutor());
         var locatario =  locatarioRepository.save(FactoryHelper.createLocatario());
-        var livro =  livroRepository.save(FactoryHelper.createLivro());
+        var livro =  livroRepository.save(FactoryHelper.createLivro(autor.getId()));
         var aluguel = FactoryHelper.createAluguel(locatario, List.of(livro));
         aluguel.setStatus(AluguelStatus.FINALIZADO);
         aluguelRepository.save(aluguel);
@@ -135,9 +135,9 @@ class AluguelControllerTest {
 
     @Test
     void livrosAlugadosPorLocatario() throws Exception {
-        autorRepository.save(FactoryHelper.createAutor());
+        var autor = autorRepository.save(FactoryHelper.createAutor());
         var locatario =  locatarioRepository.save(FactoryHelper.createLocatario());
-        var livro =  livroRepository.save(FactoryHelper.createLivro());
+        var livro =  livroRepository.save(FactoryHelper.createLivro(autor.getId()));
         aluguelRepository.save(FactoryHelper.createAluguel(locatario, List.of(livro)));
 
         mockMvc.perform(get("/api/alugueis/locatario/"+locatario.getId()))

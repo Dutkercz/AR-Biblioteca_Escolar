@@ -48,7 +48,8 @@ class LivroControllerTest {
     @Test
     @DisplayName("Deve registrar um Livro corretamente quando as informações forem validas")
     void deveCadastrarLivroComSucesso() throws Exception {
-        var requestDto = FactoryHelper.createLivroRequestDto();
+        var autor = autorRepository.save(FactoryHelper.createAutor());
+        var requestDto = FactoryHelper.createLivroRequestDto(autor.getId());
 
         mockMvc.perform(post("/api/livros")
                                 .content(jsonLivro.write(requestDto).getJson())
@@ -64,8 +65,8 @@ class LivroControllerTest {
     @Test
     @DisplayName("Deve falahar ao registar um Livro quando o ISBN já estiver cadastrado")
     void deveFalharAoCadastrarIsbnRepetido() throws Exception {
-        var autor = FactoryHelper.createAutor();
-        var requestDto = FactoryHelper.createLivroRequestDto();
+        var autor = autorRepository.save(FactoryHelper.createAutor());
+        var requestDto = FactoryHelper.createLivroRequestDto(autor.getId());
         String isbnRepetido = requestDto.ISBN();
 
         //salvo um livro antes de mandar o resquet para ja ter um ISBN igual o do request salvo no DB
@@ -112,8 +113,8 @@ class LivroControllerTest {
     @Test
     @DisplayName("Deve listar somente livros disponiveis para aluguel")
     void deveListarSomenteLivrosDisponiveis() throws Exception {
-        autorRepository.save(FactoryHelper.createAutor());
-        var livros = livroRepository.saveAll(FactoryHelper.listaLivros());
+        var autor = autorRepository.save(FactoryHelper.createAutor());
+        var livros = livroRepository.saveAll(FactoryHelper.listaLivros(autor.getId()));
 
         mockMvc.perform(get("/api/livros/disponiveis"))
                 .andExpect(status().isOk())
@@ -128,8 +129,8 @@ class LivroControllerTest {
     @Test
     @DisplayName("Deve listar somente livros alugados")
     void deveListarSomenteLivrosAlugados() throws Exception {
-        autorRepository.save(FactoryHelper.createAutor());
-        var livros = livroRepository.saveAll(FactoryHelper.listaLivros());
+        var autor = autorRepository.save(FactoryHelper.createAutor());
+        var livros = livroRepository.saveAll(FactoryHelper.listaLivros(autor.getId()));
 
         mockMvc.perform(get("/api/livros/alugados"))
                 .andExpect(status().isOk())
@@ -143,8 +144,8 @@ class LivroControllerTest {
     @Test
     @DisplayName("Deve retornar um livro ao passar um ID existente")
     void deveEncontrarLivroPorIdComSucesso() throws Exception {
-        autorRepository.save(FactoryHelper.createAutor());
-        var livro = livroRepository.save(FactoryHelper.createLivro());
+        var autor = autorRepository.save(FactoryHelper.createAutor());
+        var livro = livroRepository.save(FactoryHelper.createLivro(autor.getId()));
 
         mockMvc.perform(get("/api/livros/"+livro.getId()))
                .andExpect(status().isOk())

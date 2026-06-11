@@ -35,11 +35,11 @@ public class FactoryHelper {
                         "12453857045");
     }
 
-    public static LivroRequestDto createLivroRequestDto(){
+    public static LivroRequestDto createLivroRequestDto(Long autorId){
         Random random = new Random();
         int finalISBN = random.nextInt(100,1000);
         return new LivroRequestDto("Livro1", "1234567891"+finalISBN,
-                LocalDate.of(1950, 1,1), List.of(1L));
+                LocalDate.of(1950, 1,1), List.of(autorId));
     }
 
     public static AutorRequestDto createAutorRequestDto(){
@@ -51,8 +51,8 @@ public class FactoryHelper {
         return autorMapper.toEntity(createAutorRequestDto());
     }
 
-    public static Livro createLivro(){
-        return livroMapper.toEntity(createLivroRequestDto());
+    public static Livro createLivro(Long autorId){
+        return livroMapper.toEntity(createLivroRequestDto(autorId));
     }
 
     public static Locatario createLocatario(){
@@ -81,11 +81,11 @@ public class FactoryHelper {
         return List.of(aluguelAtivo, aluguelFinalizado, aluguelCancelado);
     }
 
-    public static List<Livro> listaLivros(){
-        var livroDisponivel = createLivro();
+    public static List<Livro> listaLivros(Long autorId){
+        var livroDisponivel = createLivro(autorId);
         livroDisponivel.setEstaLocado(false);
 
-        var livroAlugado = createLivro();
+        var livroAlugado = createLivro(autorId);
         livroAlugado.setEstaLocado(true);
 
         return List.of(livroDisponivel, livroAlugado);
