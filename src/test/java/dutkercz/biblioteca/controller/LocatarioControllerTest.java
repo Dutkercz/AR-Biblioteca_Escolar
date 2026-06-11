@@ -36,8 +36,10 @@ class LocatarioControllerTest {
 
     @Autowired
     private LocatarioRepository locatarioRepository;
+
     @Autowired
     private JacksonTester<LocatarioRequestDto> jsonLocatario;
+
     @Autowired
     private MockMvc mockMvc;
 
