@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public record LocatarioRequestDto(
         @NotBlank(message = "O campo nome não pode estar em branco")
         @Size(min = 4, message = "O campo nome deve ter no mínimo 4 caracteres")
-        @Pattern(regexp = "^[A-Za-z ]+$", message = "O campo nome esta fora do formato esperado")
+        @Pattern(regexp = "^[\\p{L} ]+$", message = "O campo nome esta fora do formato esperado")
         @Schema(example = "Fulano Bauer")
         String nome,
 

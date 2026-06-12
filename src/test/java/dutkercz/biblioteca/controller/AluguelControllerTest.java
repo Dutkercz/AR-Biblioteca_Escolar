@@ -1,5 +1,6 @@
 package dutkercz.biblioteca.controller;
 
+import com.fasterxml.jackson.core.JsonParser;
 import dutkercz.biblioteca.controller.factory.FactoryHelper;
 import dutkercz.biblioteca.dto.aluguel.AluguelRequestDto;
 import dutkercz.biblioteca.domain.enums.AluguelStatus;
@@ -15,11 +16,16 @@ import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -54,6 +60,8 @@ class AluguelControllerTest {
     @Test
     @DisplayName("Deve alugar um livro com sucesso")
     void alugarLivro() throws Exception {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         var autor = autorRepository.save(FactoryHelper.createAutor());
         var locatario =  locatarioRepository.save(FactoryHelper.createLocatario());
         var livro =  livroRepository.save(FactoryHelper.createLivro(autor.getId()));
@@ -64,7 +72,7 @@ class AluguelControllerTest {
                                 .content(jsonRequestDto.write(requestDto).getJson()))
                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.livros[0].id").value(livro.getId()))
-               .andExpect(jsonPath("$.dataRetirada").value(LocalDate.now().toString()))
+               .andExpect(jsonPath("$.dataRetirada").value(dtf.format(LocalDate.now())))
                .andExpect(jsonPath("$.locatario.id").value(locatario.getId()))
                .andExpect(jsonPath("$.livros.length()").value(1))
                .andDo(print());
@@ -91,6 +99,7 @@ class AluguelControllerTest {
     @Test
     @DisplayName("Deve devolver status 200 quando a devolução for bem sucedida")
     void devolverLivros() throws Exception {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         var autor = autorRepository.save(FactoryHelper.createAutor());
         var locatario =  locatarioRepository.save(FactoryHelper.createLocatario());
         var livro =  livroRepository.save(FactoryHelper.createLivro(autor.getId()));
@@ -98,7 +107,7 @@ class AluguelControllerTest {
 
         mockMvc.perform(put("/api/alugueis/devolver/"+aluguel.getId()))
                 .andExpect(jsonPath("$.id").value(aluguel.getId()))
-                .andExpect(jsonPath("$.dataDevolucao").value(LocalDate.now().toString()))
+                .andExpect(jsonPath("$.dataDevolucao").value(dtf.format(LocalDate.now())))
                 .andExpect(jsonPath("$.locatario.id").value(locatario.getId()))
                 .andExpect(jsonPath("$.status").value(AluguelStatus.FINALIZADO.toString()))
                 .andExpect(status().isOk()).andDo(print());

@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,6 +51,7 @@ class LivroControllerTest {
     @Test
     @DisplayName("Deve registrar um Livro corretamente quando as informações forem validas")
     void deveCadastrarLivroComSucesso() throws Exception {
+        DateTimeFormatter dtf =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
         var autor = autorRepository.save(FactoryHelper.createAutor());
         var requestDto = FactoryHelper.createLivroRequestDto(autor.getId());
 
@@ -60,7 +62,7 @@ class LivroControllerTest {
                .andExpect(jsonPath("$.nome").value(requestDto.nome()))
                .andExpect(jsonPath("$.ISBN").value(requestDto.ISBN()))
                .andExpect(jsonPath("$.dataPublicacao").value(
-                       requestDto.dataPublicacao().toString()))
+                       dtf.format(requestDto.dataPublicacao())))
                .andDo(print());
     }
 
@@ -122,7 +124,7 @@ class LivroControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.length()").value(1))
                 .andExpect(jsonPath("$.content[0].id").value(livros.get(0).getId()))
-                .andExpect(jsonPath("$.content[0].nome").value("Livro1"))
+                .andExpect(jsonPath("$.content[0].nome").value("Livro"))
                 .andExpect(jsonPath("$.content[0].ISBN").value(livros.get(0).getISBN()))
                 .andDo(print());
     }
@@ -138,7 +140,7 @@ class LivroControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.length()").value(1))
                 .andExpect(jsonPath("$.content[0].id").value(livros.get(1).getId()))
-                .andExpect(jsonPath("$.content[0].nome").value("Livro1"))
+                .andExpect(jsonPath("$.content[0].nome").value("Livro"))
                 .andExpect(jsonPath("$.content[0].ISBN").value(livros.get(1).getISBN()))
                 .andDo(print());
     }
@@ -152,7 +154,7 @@ class LivroControllerTest {
         mockMvc.perform(get("/api/livros/"+livro.getId()))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$.id").value(livro.getId()))
-               .andExpect(jsonPath("$.nome").value("Livro1"))
+               .andExpect(jsonPath("$.nome").value("Livro"))
                .andExpect(jsonPath("$.ISBN").value(livro.getISBN()))
                .andDo(print());
     }

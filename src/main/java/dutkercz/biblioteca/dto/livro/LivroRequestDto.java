@@ -13,7 +13,7 @@ import java.util.List;
 public record LivroRequestDto(
         @NotBlank
         @Size(min = 4, message = "O campo nome deve ter no mínimo 4 caracteres")
-        @Pattern(regexp = "^[A-Za-z ]+$", message = "O campo nome esta fora do formato esperado")
+        @Pattern(regexp = "^[\\p{L}.\\- ]+$", message = "O campo nome esta fora do formato esperado")
         @Schema(example = "Memórias Postumas de Ciclano Cubas")
         String nome,
 

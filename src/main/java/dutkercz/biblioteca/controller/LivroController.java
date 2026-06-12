@@ -1,5 +1,6 @@
 package dutkercz.biblioteca.controller;
 
+import dutkercz.biblioteca.controller.documents.LivroControllerDocs;
 import dutkercz.biblioteca.dto.livro.LivroRequestDto;
 import dutkercz.biblioteca.dto.livro.LivroResponseDto;
 import dutkercz.biblioteca.service.LivroService;
@@ -16,11 +17,11 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/livros")
 @RequiredArgsConstructor
-public class LivroController {
-
+public class LivroController implements LivroControllerDocs {
     private final LivroService livroService;
 
-    @PostMapping
+
+    @Override
     public ResponseEntity<LivroResponseDto> cadastrarLivro(@RequestBody @Valid LivroRequestDto requestDto,
                                                            UriComponentsBuilder builder){
         LivroResponseDto responseDto = livroService.cadastrarLivro(requestDto);
@@ -28,22 +29,22 @@ public class LivroController {
         return ResponseEntity.created(uri).body(responseDto);
     }
 
-    @GetMapping("/disponiveis")
+    @Override
     public ResponseEntity<Page<LivroResponseDto>> listarLivrosDisponiveis(Pageable pageable){
         return ResponseEntity.ok(livroService.listarLivrosDisponiveis(pageable));
     }
 
-    @GetMapping("/alugados")
+    @Override
     public ResponseEntity<Page<LivroResponseDto>> listarLivrosAlugados(Pageable pageable){
         return ResponseEntity.ok(livroService.listarLivrosIndisponiveis(pageable));
     }
 
-    @GetMapping("/{id}")
+    @Override
     public ResponseEntity<LivroResponseDto> encontrarLivroPorId(@PathVariable Long id){
         return ResponseEntity.ok(livroService.encontrarLivroPorId(id));
     }
 
-    @DeleteMapping("/{id}")
+    @Override
     public ResponseEntity<Void> deletarLivroPorId(@PathVariable Long id){
         livroService.deletarPorId(id);
         return ResponseEntity.ok().build();

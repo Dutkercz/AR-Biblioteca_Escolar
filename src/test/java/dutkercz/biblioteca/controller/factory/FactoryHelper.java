@@ -38,12 +38,12 @@ public class FactoryHelper {
     public static LivroRequestDto createLivroRequestDto(Long autorId){
         Random random = new Random();
         int finalISBN = random.nextInt(100,1000);
-        return new LivroRequestDto("Livro1", "1234567891"+finalISBN,
+        return new LivroRequestDto("Livro", "1234567891"+finalISBN,
                 LocalDate.of(1950, 1,1), List.of(autorId));
     }
 
     public static AutorRequestDto createAutorRequestDto(){
-        return new AutorRequestDto("Autor1", GeneroEnum.NAO_BINARIO,
+        return new AutorRequestDto("Autor", GeneroEnum.NAO_BINARIO,
                 LocalDate.of(1950, 1, 1),"12345678912");
     }
 
