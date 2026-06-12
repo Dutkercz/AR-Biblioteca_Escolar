@@ -2,7 +2,7 @@ package dutkercz.biblioteca.mapper;
 
 import dutkercz.biblioteca.dto.locatario.LocatarioRequestDto;
 import dutkercz.biblioteca.dto.locatario.LocatarioResponseDto;
-import dutkercz.biblioteca.model.Locatario;
+import dutkercz.biblioteca.domain.Locatario;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -5,12 +5,11 @@ import dutkercz.biblioteca.dto.autor.AutorRequestDto;
 import dutkercz.biblioteca.dto.autor.AutorResponseDto;
 import dutkercz.biblioteca.exception.custom.BusinessException;
 import dutkercz.biblioteca.mapper.AutorMapper;
-import dutkercz.biblioteca.model.Autor;
-import dutkercz.biblioteca.model.Livro;
+import dutkercz.biblioteca.domain.Autor;
+import dutkercz.biblioteca.domain.Livro;
 import dutkercz.biblioteca.repository.AutorRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -62,7 +61,7 @@ public class AutorService {
     }
 
     @Transactional
-    public void removerAutoriaDeLivro(Long id, Long livroId) {
+    public AutorComLivrosResponseDto removerAutoriaDeLivro(Long id, Long livroId) {
         Autor autor = finderAutorPorId(id);
         Livro livro = livroService.finderLivroPorId(livroId);
         if (!livro.getAutores().contains(autor)) {
@@ -73,5 +72,6 @@ public class AutorService {
         if (livro.getAutores().isEmpty()) {
             livroService.deletarPorId(livroId);
         }
+        return autorMapper.ToResponseComLivrosDto(autor);
     }
 }

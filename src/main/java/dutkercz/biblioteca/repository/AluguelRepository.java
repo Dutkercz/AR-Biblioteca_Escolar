@@ -1,6 +1,6 @@
 package dutkercz.biblioteca.repository;
 
-import dutkercz.biblioteca.model.Aluguel;
+import dutkercz.biblioteca.domain.Aluguel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

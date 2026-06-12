@@ -5,12 +5,12 @@ import dutkercz.biblioteca.dto.autor.AutorRequestDto;
 import dutkercz.biblioteca.dto.livro.LivroRequestDto;
 import dutkercz.biblioteca.dto.locatario.LocatarioRequestDto;
 import dutkercz.biblioteca.mapper.*;
-import dutkercz.biblioteca.model.Aluguel;
-import dutkercz.biblioteca.model.Autor;
-import dutkercz.biblioteca.model.Livro;
-import dutkercz.biblioteca.model.Locatario;
-import dutkercz.biblioteca.model.enums.AluguelStatus;
-import dutkercz.biblioteca.model.enums.GeneroEnum;
+import dutkercz.biblioteca.domain.Aluguel;
+import dutkercz.biblioteca.domain.Autor;
+import dutkercz.biblioteca.domain.Livro;
+import dutkercz.biblioteca.domain.Locatario;
+import dutkercz.biblioteca.domain.enums.AluguelStatus;
+import dutkercz.biblioteca.domain.enums.GeneroEnum;
 
 import java.time.LocalDate;
 import java.util.List;

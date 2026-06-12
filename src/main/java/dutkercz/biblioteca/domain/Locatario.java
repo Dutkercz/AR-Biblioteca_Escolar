@@ -1,6 +1,6 @@
-package dutkercz.biblioteca.model;
+package dutkercz.biblioteca.domain;
 
-import dutkercz.biblioteca.model.enums.GeneroEnum;
+import dutkercz.biblioteca.domain.enums.GeneroEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

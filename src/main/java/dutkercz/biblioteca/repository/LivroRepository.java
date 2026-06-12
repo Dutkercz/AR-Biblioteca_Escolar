@@ -1,6 +1,6 @@
 package dutkercz.biblioteca.repository;
 
-import dutkercz.biblioteca.model.Livro;
+import dutkercz.biblioteca.domain.Livro;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

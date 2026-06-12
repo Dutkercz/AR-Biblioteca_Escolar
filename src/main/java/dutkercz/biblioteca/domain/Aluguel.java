@@ -1,6 +1,6 @@
-package dutkercz.biblioteca.model;
+package dutkercz.biblioteca.domain;
 
-import dutkercz.biblioteca.model.enums.AluguelStatus;
+import dutkercz.biblioteca.domain.enums.AluguelStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

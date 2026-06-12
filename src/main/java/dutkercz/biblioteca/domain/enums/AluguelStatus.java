@@ -1,4 +1,4 @@
-package dutkercz.biblioteca.model.enums;
+package dutkercz.biblioteca.domain.enums;
 
 public enum AluguelStatus {
     ATIVO,

@@ -1,7 +1,7 @@
 package dutkercz.biblioteca.service.validacoes;
 
 import dutkercz.biblioteca.exception.custom.BusinessException;
-import dutkercz.biblioteca.model.Autor;
+import dutkercz.biblioteca.domain.Autor;
 import dutkercz.biblioteca.repository.AutorRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

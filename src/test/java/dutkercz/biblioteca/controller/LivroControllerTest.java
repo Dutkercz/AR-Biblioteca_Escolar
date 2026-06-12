@@ -2,7 +2,7 @@ package dutkercz.biblioteca.controller;
 
 import dutkercz.biblioteca.controller.factory.FactoryHelper;
 import dutkercz.biblioteca.dto.livro.LivroRequestDto;
-import dutkercz.biblioteca.model.Livro;
+import dutkercz.biblioteca.domain.Livro;
 import dutkercz.biblioteca.repository.AutorRepository;
 import dutkercz.biblioteca.repository.LivroRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
+@ActiveProfiles("test")
 @Transactional
 class LivroControllerTest {
 

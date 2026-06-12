@@ -3,7 +3,7 @@ package dutkercz.biblioteca.mapper;
 import dutkercz.biblioteca.dto.autor.AutorComLivrosResponseDto;
 import dutkercz.biblioteca.dto.autor.AutorRequestDto;
 import dutkercz.biblioteca.dto.autor.AutorResponseDto;
-import dutkercz.biblioteca.model.Autor;
+import dutkercz.biblioteca.domain.Autor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

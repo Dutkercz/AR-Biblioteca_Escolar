@@ -1,4 +1,4 @@
-package dutkercz.biblioteca.model;
+package dutkercz.biblioteca.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

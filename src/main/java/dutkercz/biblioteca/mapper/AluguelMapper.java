@@ -2,9 +2,9 @@ package dutkercz.biblioteca.mapper;
 
 import dutkercz.biblioteca.dto.aluguel.AluguelRequestDto;
 import dutkercz.biblioteca.dto.aluguel.AluguelResponseDto;
-import dutkercz.biblioteca.model.Aluguel;
-import dutkercz.biblioteca.model.Livro;
-import dutkercz.biblioteca.model.Locatario;
+import dutkercz.biblioteca.domain.Aluguel;
+import dutkercz.biblioteca.domain.Livro;
+import dutkercz.biblioteca.domain.Locatario;
 import org.mapstruct.*;
 
 import java.util.List;

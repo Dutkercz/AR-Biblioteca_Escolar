@@ -2,10 +2,8 @@ package dutkercz.biblioteca.controller;
 
 import dutkercz.biblioteca.controller.factory.FactoryHelper;
 import dutkercz.biblioteca.dto.locatario.LocatarioRequestDto;
-import dutkercz.biblioteca.model.Locatario;
-import dutkercz.biblioteca.model.enums.GeneroEnum;
+import dutkercz.biblioteca.domain.enums.GeneroEnum;
 import dutkercz.biblioteca.repository.LocatarioRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

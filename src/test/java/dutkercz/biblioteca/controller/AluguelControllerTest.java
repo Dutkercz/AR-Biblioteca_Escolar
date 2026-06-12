@@ -2,7 +2,7 @@ package dutkercz.biblioteca.controller;
 
 import dutkercz.biblioteca.controller.factory.FactoryHelper;
 import dutkercz.biblioteca.dto.aluguel.AluguelRequestDto;
-import dutkercz.biblioteca.model.enums.AluguelStatus;
+import dutkercz.biblioteca.domain.enums.AluguelStatus;
 import dutkercz.biblioteca.repository.AluguelRepository;
 import dutkercz.biblioteca.repository.AutorRepository;
 import dutkercz.biblioteca.repository.LivroRepository;

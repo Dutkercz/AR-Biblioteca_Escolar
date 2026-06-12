@@ -1,7 +1,7 @@
 package dutkercz.biblioteca.dto.autor;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import dutkercz.biblioteca.model.enums.GeneroEnum;
+import dutkercz.biblioteca.domain.enums.GeneroEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

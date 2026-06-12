@@ -2,7 +2,7 @@ package dutkercz.biblioteca.mapper;
 
 import dutkercz.biblioteca.dto.livro.LivroRequestDto;
 import dutkercz.biblioteca.dto.livro.LivroResponseDto;
-import dutkercz.biblioteca.model.Livro;
+import dutkercz.biblioteca.domain.Livro;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

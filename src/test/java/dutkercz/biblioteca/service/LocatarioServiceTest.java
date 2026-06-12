@@ -2,7 +2,6 @@ package dutkercz.biblioteca.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.List;
@@ -12,14 +11,13 @@ import dutkercz.biblioteca.dto.locatario.LocatarioRequestDto;
 import dutkercz.biblioteca.dto.locatario.LocatarioResponseDto;
 import dutkercz.biblioteca.exception.custom.BusinessException;
 import dutkercz.biblioteca.mapper.LocatarioMapper;
-import dutkercz.biblioteca.model.Aluguel;
-import dutkercz.biblioteca.model.Locatario;
-import dutkercz.biblioteca.model.enums.AluguelStatus;
+import dutkercz.biblioteca.domain.Aluguel;
+import dutkercz.biblioteca.domain.Locatario;
+import dutkercz.biblioteca.domain.enums.AluguelStatus;
 import dutkercz.biblioteca.repository.AluguelRepository;
 import dutkercz.biblioteca.repository.LocatarioRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

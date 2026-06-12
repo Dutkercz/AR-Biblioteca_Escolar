@@ -1,7 +1,5 @@
 package dutkercz.biblioteca.dto.livro;
 
-import dutkercz.biblioteca.model.Autor;
-
 import java.time.LocalDate;
 import java.util.List;
 

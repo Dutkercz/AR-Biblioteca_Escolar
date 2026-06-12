@@ -1,6 +1,6 @@
 package dutkercz.biblioteca.dto.autor;
 
-import dutkercz.biblioteca.model.enums.GeneroEnum;
+import dutkercz.biblioteca.domain.enums.GeneroEnum;
 import java.time.LocalDate;
 
 public record AutorResponseDto(
