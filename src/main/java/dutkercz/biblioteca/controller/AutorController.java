@@ -17,11 +17,10 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/autores")
 @RequiredArgsConstructor
-public class AutorController {
-
+public class AutorController implements dutkercz.biblioteca.controller.documents.AutorControllerDocs {
     private final AutorService autorService;
 
-    @PostMapping
+    @Override
     public ResponseEntity<AutorResponseDto> cadastrarAutor(@RequestBody @Valid AutorRequestDto requestDto,
                                                            UriComponentsBuilder builder){
         AutorResponseDto responseDto = autorService.cadastrarAutor(requestDto);
@@ -29,26 +28,24 @@ public class AutorController {
         return ResponseEntity.created(uri).body(responseDto);
     }
 
-    @GetMapping()
-    public ResponseEntity<Page<AutorResponseDto>> encontrarAutorPorNome(@RequestParam String nome,
-                                                                       Pageable  pageable) {
+    @Override
+    public ResponseEntity<Page<AutorResponseDto>> encontrarAutorPorNome(@RequestParam String nome, Pageable pageable) {
         return ResponseEntity.ok(autorService.encontrarAutorPorNome(nome, pageable));
     }
 
-    @GetMapping("{id}/livros")
+    @Override
     public ResponseEntity<AutorComLivrosResponseDto> encontrarLivrosDeAutor(@PathVariable Long id){
         return ResponseEntity.ok(autorService.encontrarLivrosPorAutorId(id));
     }
 
-    @DeleteMapping("/{id}")
+    @Override
     public ResponseEntity<Void> deletarAutor(@PathVariable Long id){
         autorService.deletarPorId(id);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{id}/livro/{livroId}")
-    public ResponseEntity<Void> removerAutoriaDeLivro(@PathVariable Long id,  @PathVariable Long livroId){
-        autorService.removerAutoriaDeLivro(id, livroId);
-        return ResponseEntity.ok().build();
+    @Override
+    public ResponseEntity<AutorComLivrosResponseDto> removerAutoriaDeLivro(@PathVariable Long id, @PathVariable Long livroId){
+        return ResponseEntity.ok(autorService.removerAutoriaDeLivro(id, livroId));
     }
 }
