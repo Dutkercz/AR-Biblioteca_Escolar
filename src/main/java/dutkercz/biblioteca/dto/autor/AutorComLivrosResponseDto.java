@@ -5,7 +5,7 @@ import dutkercz.biblioteca.dto.livro.LivroResponseDto;
 import java.util.List;
 
 public record AutorComLivrosResponseDto(
-        String nome,
+        String nomeAutor,
         List<LivroResponseDto> livros
 ) {
 }
