@@ -14,19 +14,18 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/locatarios")
 @RequiredArgsConstructor
-public class LocatarioController {
-
+public class LocatarioController implements dutkercz.biblioteca.controller.documents.LocatarioControllerDocs {
     private final LocatarioService locatarioService;
 
-    @PostMapping
+    @Override
     public ResponseEntity<LocatarioResponseDto> cadastrarLocatario(@RequestBody @Valid LocatarioRequestDto requestDto,
-                                                                  UriComponentsBuilder builder) {
+                                                                   UriComponentsBuilder builder) {
         LocatarioResponseDto responseDto = locatarioService.cadastrarLocatario(requestDto);
         URI uri =  builder.path("/api/locatarios/{id}").buildAndExpand(responseDto.id()).toUri();
         return  ResponseEntity.created(uri).body(responseDto);
     }
 
-    @DeleteMapping("/{id}")
+    @Override
     public ResponseEntity<Void> deletarLocatario(@PathVariable Long id) {
         locatarioService.deletarPorId(id);
         return ResponseEntity.noContent().build();
