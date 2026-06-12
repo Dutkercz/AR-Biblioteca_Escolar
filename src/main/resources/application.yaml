@@ -2,7 +2,7 @@ spring:
   application:
     name: desafio-biblioteca
   profiles:
-    active: "h2"
+    active: "mysql"
 
   #não renderizar campos nullos em respostas :D
   jackson:
