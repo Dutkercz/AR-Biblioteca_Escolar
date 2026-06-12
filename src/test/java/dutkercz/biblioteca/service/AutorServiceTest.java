@@ -108,18 +108,6 @@ class AutorServiceTest {
     }
 
     @Test
-    void deveLancarExcecaoQuandoAutorNaoPossuirLivros() {
-        Autor autor = new Autor();
-        autor.setLivros(new ArrayList<>());
-
-        when(autorRepository.findById(1L)).thenReturn(Optional.of(autor));
-
-        var result = assertThrows(BusinessException.class,
-                     () -> autorService.encontrarLivrosPorAutorId(1L));
-        assertEquals("Autor não possui livros cadastrados", result.getMessage());
-    }
-
-    @Test
     void deveDeletarAutorSemLivros() {
         Autor autor = new Autor();
         autor.setLivros(new ArrayList<>());

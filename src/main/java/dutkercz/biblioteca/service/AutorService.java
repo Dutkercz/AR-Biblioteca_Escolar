@@ -46,9 +46,6 @@ public class AutorService {
 
     public AutorComLivrosResponseDto encontrarLivrosPorAutorId(Long id) {
         Autor autor = finderAutorPorId(id);
-        if(autor.getLivros().isEmpty()){
-            throw new BusinessException("Autor não possui livros cadastrados");
-        }
         return autorMapper.ToResponseComLivrosDto(autor);
     }
 
