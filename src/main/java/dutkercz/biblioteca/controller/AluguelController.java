@@ -1,9 +1,11 @@
 package dutkercz.biblioteca.controller;
 
+import dutkercz.biblioteca.controller.documents.AluguelControllerDocs;
 import dutkercz.biblioteca.dto.aluguel.AluguelRequestDto;
 import dutkercz.biblioteca.dto.aluguel.AluguelResponseDto;
 import dutkercz.biblioteca.dto.livro.LivroResponseDto;
 import dutkercz.biblioteca.service.AluguelService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,36 +19,35 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/alugueis")
 @RequiredArgsConstructor
-public class AluguelController {
+public class AluguelController implements AluguelControllerDocs {
     private final AluguelService aluguelService;
 
-    @PostMapping
-    public ResponseEntity<AluguelResponseDto> alugarLivro(@RequestBody AluguelRequestDto requestDto,
+    @Override
+    public ResponseEntity<AluguelResponseDto> alugarLivro(@RequestBody @Valid AluguelRequestDto requestDto,
                                                           UriComponentsBuilder builder){
         AluguelResponseDto responseDto = aluguelService.alugarLivro(requestDto);
         URI uri = builder.path("/api/alugueis/{id}").buildAndExpand(responseDto.id()).toUri();
         return ResponseEntity.created(uri).body(responseDto);
     }
 
-    @GetMapping
+    @Override
     public ResponseEntity<Page<AluguelResponseDto>> listarAlugeis(Pageable pageable){
         return ResponseEntity.ok(aluguelService.listarAlugueis(pageable));
     }
-    @PutMapping("/devolver/{id}")
+
+    @Override
     public ResponseEntity<AluguelResponseDto> devolverLivros(@PathVariable Long id){
         AluguelResponseDto responseDto = aluguelService.finalizarAluguel(id);
         return ResponseEntity.ok(responseDto);
     }
 
-    @DeleteMapping("/{id}")
+    @Override
     public ResponseEntity<Void> deletarAluguel(@PathVariable Long id){
         aluguelService.deletarAluguel(id);
         return ResponseEntity.noContent().build();
     }
 
-    // buscar alugueis de um ID (locatarioID) -> pegar todos alugueis (list) -> pegar todos os livros de cada aluguel
-    //remover repetidos usando o Set
-    @GetMapping("/locatario/{locatarioID}")
+    @Override
     public ResponseEntity<Set<LivroResponseDto>> livrosAlugadosPorLocatario(@PathVariable Long locatarioID){
         return ResponseEntity.ok(aluguelService.historicoDeLivrosLocadosPorLocatario(locatarioID));
     }
